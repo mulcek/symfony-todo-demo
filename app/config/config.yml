@@ -45,12 +45,11 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [ AppBundle, MopaBootstrapBundle ]
-    #java: /usr/bin/java
     filters:
-#        less:
-#            node: /usr/bin/node
-#            node_paths: [/usr/lib/node_modules]
-#            apply_to: "\\.less$"
+        less:
+            node: /usr/bin/node
+            node_paths: [/usr/lib/node_modules]
+            apply_to: "\\.less$"
         cssrewrite: ~
         uglifycss:
             bin: /usr/bin/uglifycss
@@ -68,9 +67,9 @@ doctrine:
         password: "%database_password%"
 #        unix_socket: "/run/mysqld/mysqld.sock"
         server_version: 5.6
-        charset:  UTF8
+        charset:  utf8mb4
         options:
-            1002: "SET NAMES 'UTF8' COLLATE 'utf8_unicode_ci'"
+            1002: "SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'"
         mapping_types:
             enum:   string
             set:    string

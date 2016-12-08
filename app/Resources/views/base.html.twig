@@ -3,11 +3,31 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {% stylesheets filter='?uglifycss' filter='cssrewrite'
+                'bundles/app/less/bootstrap.less'
+                '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/jquery-ui.min.css'
+                '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/theme.css'
+            %}
+                <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+            {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% block menu %}
+        {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+        {% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts filter='?uglifyjs2'
+                '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
+                '%kernel.root_dir%/../vendor/components/jqueryui/jquery-ui.min.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        
+{#                '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js'#}
+        {% endblock %}
     </body>
 </html>

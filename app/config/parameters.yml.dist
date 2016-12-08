@@ -1,0 +1,18 @@
+parameters:
+    database_host:     ${SYMFONY__DATABASE__HOST}
+    database_port:     ${SYMFONY__DATABASE__PORT}
+    database_name:     ${SYMFONY__DATABASE__NAME}
+    database_user:     ${SYMFONY__DATABASE__USER}
+    database_password: ${SYMFONY__DATABASE__PASSWORD}
+
+    mailer_transport:  ${SYMFONY__MAILER_TRANSPORT}
+    mailer_host:       ${SYMFONY__MAILER_HOST}
+    mailer_port:       ${SYMFONY__MAILER_PORT}
+    mailer_user:       ${SYMFONY__MAILER_USER}
+    mailer_password:   ${SYMFONY__MAILER_PASSWORD}
+    delivery_address:  ${SYMFONY__DELIVERY_ADDRESS}
+
+    locale:            ${SYMFONY__LOCALE}
+    secret:            ${SYMFONY__SECRET}
+
+    redis.default.dsn: ${SYMFONY__REDIS__DEFAULT__DSN}

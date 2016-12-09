@@ -1,33 +1,55 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets filter='?uglifycss' filter='cssrewrite'
-                'bundles/app/less/bootstrap.less'
-                '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/jquery-ui.min.css'
-                '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/theme.css'
-            %}
-                <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-            {% endstylesheets %}
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block menu %}
-        {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
-        {% endblock %}
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            {% javascripts filter='?uglifyjs2'
-                '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
-                '%kernel.root_dir%/../vendor/components/jqueryui/jquery-ui.min.js'
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        
-{#                '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js'#}
-        {% endblock %}
-    </body>
-</html>
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets filter='?uglifycss' filter='cssrewrite'
+            'bundles/app/less/bootstrap.less'
+            '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/jquery-ui.min.css'
+            '%kernel.root_dir%/../vendor/components/jqueryui/themes/cupertino/theme.css'
+        %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+{% endblock head %}
+{% block body %}
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            {# Brand and toggle get grouped for better mobile display #}
+            <div class="navbar-header">
+                {#<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>#}
+                <a class="navbar-brand" href="#">TODO APP</a>
+            </div>
+
+            {# Collect the nav links, forms, and other content for toggling #}
+            <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+                {{ knp_menu_render('AppBundle:Builder:mainMenu', {'currentClass': 'active', 'template': 'AppBundle:Menu:knp_menu.html.twig'}) }}
+            </div>
+        </div>
+    </div>
+
+    {% block container %}
+        <div class="content" style="margin: 80px 4% 0 4%;">
+            {% block javascripts %}
+                {% javascripts filter='?uglifyjs2'
+                    '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
+                    '%kernel.root_dir%/../vendor/components/jqueryui/jquery-ui.min.js'
+                %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+
+        {#                '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js'#}
+            {% endblock %}
+            {% block content_row %}{% endblock content_row %}
+        </div>
+    {% endblock container %}
+{% endblock body %}

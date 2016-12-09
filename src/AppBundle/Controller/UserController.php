@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $users = $em->getRepository('AppBundle:User')->findBy(['deletedAt'=>null]);
 
         return $this->render('user/index.html.twig', array(
             'users' => $users,

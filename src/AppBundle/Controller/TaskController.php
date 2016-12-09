@@ -25,7 +25,7 @@ class TaskController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tasks = $em->getRepository('AppBundle:Task')->findAll();
+        $tasks = $em->getRepository('AppBundle:Task')->findBy(['deletedAt'=>null]);
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
